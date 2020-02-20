@@ -1,17 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.http import HttpResponse
 from .models import *
 from .forms import *
-from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+
+
+
 # Create your views here.
 def search(request):
     list=[]
-    search=SearchForm(request.POST or None, request.FILES or None)
+    search=SearchForm(request.POST or None)
     if search.is_valid():
-        exam=int(search.cleaned_data['exam'])
-        list=Answer.objects.filter(exam=exam, student=request.user)
+        owner=search.cleaned_data['owner']
+
+        list=QuestionSheet.objects.filter(owner=owner)
     context={
     'search':search,
     'list':list
@@ -20,8 +24,45 @@ def search(request):
 
 
 def studentExams(request):
-    examList=QuestionSheet.objects.filter(student=request.user)
+    examList=QuestionSheet.objects.filter(owner=request.user)
     context={
-    'examList':examList
+    'examList':examList,
     }
-    return render(request, 'list.html', context)
+    return render(request, 'examList.html', context)
+
+#Add new exam model
+def newExam(request):
+    form=newExamForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect(newQuestionSheet)
+    context={'form':form}
+    return render(request, 'newQuestionSheet.html', context)
+#Add ne question
+def newQuestion(request):
+    form=newQuestionForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect(newQuestionSheet)
+    context={'form':form}
+    return render(request, 'newQuestionSheet.html', context)
+
+
+def newQuestionSheet(request):
+    form=newQuestionSheetForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect(search)
+    context={'form':form}
+    return render(request, 'newQuestionSheet.html', context)
+
+def questionSheet(request, id):
+    sheet=QuestionSheet.objects.get(pk=id)
+    name=sheet.examName
+    questions=sheet.questions
+    context={
+    'sheet':sheet,
+    'name':name,
+    'questions':questions
+    }
+    return render(request, 'QuestionSheet.html', context)

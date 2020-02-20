@@ -11,7 +11,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(QuestionSheet)
 class QuestionSheetAdmin(admin.ModelAdmin):
-    list_display=('examName', 'student')
+    list_display=('examName', 'owner')
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):

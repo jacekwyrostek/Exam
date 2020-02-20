@@ -1,0 +1,17 @@
+{%extends 'main.html'%}
+
+{% block title %} Add {% endblock %}
+
+{% block body %}
+
+<form method="post">
+  {%csrf_token%}
+  {{ form.as_p }}
+  <br><button type="submit">Confirm</button>
+</form>
+
+
+
+<a href="{% url 'newQuestion' %}">New Question</a>
+<a href="{% url 'newExam' %}">New Exam</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{%extends 'main.html'%}
+
+{% block title %} Search {% endblock %}
+{% block body %}
+<div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ search }}
+    <br>
+    <form action='search_mass.html'>
+      <input type="submit" value='Search'/>
+    </form>
+    <br>
+  </form>
+</div>
+
+{% for list in list %}
+{{list}}
+<a href="{% url 'questionSheet' list.id %}">Start</a><br>
+{% endfor %}
+{% endblock %}

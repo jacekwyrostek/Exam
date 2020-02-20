@@ -14,8 +14,7 @@ class Exam(models.Model):
 class QuestionSheet(models.Model):
     examName=models.ForeignKey(Exam, on_delete=models.CASCADE)
     questions=models.ManyToManyField(Question)
-    student=models.ForeignKey(User, on_delete=models.CASCADE)
-    #owner=models.ForeignKey(User, on_delete=models.CASCADE)
+    owner=models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.examName)
 

@@ -1,0 +1,12 @@
+{%extends 'main.html'%}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+{% for exam in examList %}
+{{exam}}
+<a href="{% url 'questionSheet' exam.id %}">Start</a>
+<br>
+{% endfor %}
+{% endblock %}

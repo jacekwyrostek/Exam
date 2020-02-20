@@ -1,0 +1,12 @@
+{%extends 'main.html'%}
+
+{% block title %} {% endblock %}
+{% block body %}
+
+{{sheet.examName}}<br>
+<br>
+{% for q in sheet.questions.all %}
+  {{ q }}<br>
+{% endfor %}
+
+{% endblock %}

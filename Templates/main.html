@@ -1,0 +1,26 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <header>
+    <a href="{% url 'newQuestionSheet' %}">New Question Sheet</a>
+    <a href="{% url 'studentExams' %}">Exam List</a>
+    <a href="{% url 'search' %}">Search</a>
+
+
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">LogOut</a>
+    {% else %}
+      <a href="{% url 'login' %}">LogIn</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+      {{user.username}}
+    {% endif %}
+  </header>
+  <body>
+    {% block body %} {% endblock %}
+  </body>
+</html>

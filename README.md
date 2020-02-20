@@ -29,4 +29,6 @@ To run at localhost. It will run on port 8000 by default.
 ```
 python manage.py runserver
 ```
-On localhost:8000/admin/ create group 'owner'
+On http://127.0.0.1:8000/admin/ create group 'owner'
+
+You can start on http://127.0.0.1:8000/studentExams/

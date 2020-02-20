@@ -3,10 +3,10 @@
 {% block title %}  {% endblock %}
 
 {% block body %}
-
+Select an Exam:
+<br>
 {% for exam in examList %}
-{{exam}}
-<a href="{% url 'questionSheet' exam.id %}">Start</a>
+<a href="{% url 'questionSheet' exam.id %}">{{exam}}</a>
 <br>
 {% endfor %}
 {% endblock %}

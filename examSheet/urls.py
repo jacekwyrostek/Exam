@@ -12,4 +12,7 @@ urlpatterns = [
     url('newQuestionSheet/', newQuestionSheet, name='newQuestionSheet'),
     url('questionSheet/<int:id>', questionSheet, name='questionSheet'),
     path('questionSheet/<int:id>', questionSheet, name='questionSheet'),
+    #url('answerSheet/<int:id>', answerSheet, name='answerSheet'),
+    path('answerSheet/<int:id>', answerSheet, name='answerSheet'),
+    path('answer/<int:id>', editAnswer, name='answer')
 ]

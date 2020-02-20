@@ -7,18 +7,17 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 
 class SearchForm(forms.Form):
     owner=forms.ModelChoiceField(queryset=User.objects.filter(groups__name='owner'))
-    
+
 class QuestionForm(forms.ModelForm):
     class Meta:
         model=Question
         fields=['question']
 
 class newQuestionSheetForm(forms.ModelForm):
-    question=forms.ModelMultipleChoiceField(queryset=Question.objects.all(),
-        widget=forms.CheckboxSelectMultiple, required=True)
+
     class Meta:
         model = QuestionSheet
-        fields=['examName', 'owner']
+        fields=['examName', 'questions', 'owner']
 
 class newQuestionForm(forms.ModelForm):
     class Meta:
@@ -29,3 +28,8 @@ class newExamForm(forms.ModelForm):
     class Meta:
         model = Exam
         fields=['name']
+
+class editAnswerForm(forms.ModelForm):
+    class Meta:
+        model=Answer
+        fields=['answer']

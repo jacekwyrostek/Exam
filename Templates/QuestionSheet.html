@@ -3,10 +3,10 @@
 {% block title %} {% endblock %}
 {% block body %}
 
-{{sheet.examName}}<br>
+Exam:{{sheet.examName}}<br>
 <br>
 {% for q in sheet.questions.all %}
   {{ q }}<br>
 {% endfor %}
-
+<a href="{% url 'answerSheet' answerSheet.id %}">Start</a>
 {% endblock %}

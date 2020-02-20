@@ -25,12 +25,12 @@ class Answer(models.Model):
     student=models.ForeignKey(User, on_delete=models.CASCADE)
     note=models.IntegerField(blank=True, null=True)
     def __str__(self):
-        return self.question
+        return self.question.question
 
 class AnswerSheet(models.Model):
-    exam=models.ForeignKey(Exam, on_delete=models.CASCADE)
+    exam=models.ForeignKey(Exam, on_delete=models.CASCADE, null=True, blank=True)
     answers=models.ManyToManyField(Answer)
     student=models.ForeignKey(User, on_delete=models.CASCADE)
     note=models.IntegerField(blank=True, null=True)
     def __str__(self):
-        return self.name
+        return self.exam.name
